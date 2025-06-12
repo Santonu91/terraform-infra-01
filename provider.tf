@@ -3,7 +3,6 @@
 provider "aws" {
   # Configuration options
   region     = "us-east-1"  # Change to your desired region
-
 }
 
 data "aws_caller_identity" "current" {}
