@@ -11,14 +11,13 @@ output "account_id" {
   value = data.aws_caller_identity.current.account_id
 }
 
-
 resource "aws_instance" "ec2" {
   ami           = "ami-09e6f87a47903347c"
    # Amazon Linux 2 AMI (change based on region)
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Terraform_EC2"
+    Name = "Terraform_EC2_Actions"
   }
 }
 
