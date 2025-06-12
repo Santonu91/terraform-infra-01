@@ -1,0 +1,43 @@
+name: Terraform CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the 'main' branch (change if needed)
+  pull_request:
+    branches:
+      - main  # Trigger on PR to the 'main' branch (optional)
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Terraform
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.5  # Specify the version of Terraform you want
+
+      # Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+
+      # Validate Terraform configuration
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Plan Terraform execution
+      - name: Terraform Plan
+        run: terraform plan
+
+      # Apply Terraform changes (can be manual approval or auto)
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
