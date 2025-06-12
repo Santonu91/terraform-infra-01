@@ -17,7 +17,7 @@ resource "aws_instance" "ec2" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Terraform_EC2_Actions"
+    Name = "Terraform_EC2_Actions_4_11"
   }
 }
 
